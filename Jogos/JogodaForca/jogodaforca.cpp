@@ -55,10 +55,11 @@ void jogarSozinho(){
 
         cout << "digite uma letra: ";
         cin >> letra;
+        char letraMin = tolower(letra);
 
         for(cont = 0; cont < tamanhoPalavra; cont++){
 
-            if(palavra[cont] == letra){
+            if(palavra[cont] == letraMin){
 
                 palavraMascara[cont] = palavra[cont];
             }
