@@ -42,21 +42,28 @@ void exibeStatus(string palavra, int tamanhoPalavra, int tentativas){
 void jogarSozinho(){
 
     string palavra = retornaPalavra();
-
     int tamanhoPalavra = palavra.size();
-
     string palavraMascara= retornaMascara(palavra, tamanhoPalavra);
-
     int tentativas = 0, maxTentativas = (tamanhoPalavra*2);
-
+    int cont;
     char letra;
 
     while(maxTentativas - tentativas > 0){
 
-        exibeStatus(palavra, tamanhoPalavra, (maxTentativas - tentativas));
+        limpaTela();
+        exibeStatus(palavraMascara, tamanhoPalavra, (maxTentativas - tentativas));
+
         cout << "digite uma letra: ";
         cin >> letra;
-        limpaTela();
+
+        for(cont = 0; cont < tamanhoPalavra; cont++){
+
+            if(palavra[cont] == letra){
+
+                palavraMascara[cont] = palavra[cont];
+            }
+        }
+
         tentativas++;
     }
 
