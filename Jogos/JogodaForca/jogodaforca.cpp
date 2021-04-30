@@ -16,6 +16,8 @@ string retornaPalavra(){
     return palavrasVetor[rand() % 5];
 }
 
+
+
 string retornaMascara(string palavra, int tamanhoPalavra){
 
     int i = 0;
@@ -31,6 +33,12 @@ string retornaMascara(string palavra, int tamanhoPalavra){
 
 }
 
+void exibeStatus(string palavra, int tamanhoPalavra, int tentativas){
+
+    cout << "palavra: " << palavra << " (tamanho: " << tamanhoPalavra << ")\n";
+    cout << "voce tem " << tentativas << " tentativas\n";
+}
+
 void jogarSozinho(){
 
     string palavra = retornaPalavra();
@@ -39,8 +47,18 @@ void jogarSozinho(){
 
     string palavraMascara= retornaMascara(palavra, tamanhoPalavra);
 
+    int tentativas = 0, maxTentativas = (tamanhoPalavra*2);
 
-    cout << "palavra: " << palavraMascara << "(tamanho: " << tamanhoPalavra << ")\n";
+    char letra;
+
+    while(maxTentativas - tentativas > 0){
+
+        exibeStatus(palavra, tamanhoPalavra, (maxTentativas - tentativas));
+        cout << "digite uma letra: ";
+        cin >> letra;
+        limpaTela();
+        tentativas++;
+    }
 
 
 
