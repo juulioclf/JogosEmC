@@ -48,7 +48,7 @@ void jogarSozinho(){
     int cont;
     char letra;
 
-    while(maxTentativas - tentativas > 0){
+    while((palavraMascara != palavra) && (maxTentativas - tentativas > 0)){
 
         limpaTela();
         exibeStatus(palavraMascara, tamanhoPalavra, (maxTentativas - tentativas));
