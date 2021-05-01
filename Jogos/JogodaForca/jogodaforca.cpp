@@ -33,10 +33,17 @@ string retornaMascara(string palavra, int tamanhoPalavra){
 
 }
 
-void exibeStatus(string palavra, int tamanhoPalavra, int tentativas){
+void exibeStatus(string palavra, int tamanhoPalavra, int tentativas, string letrasArricadas){
 
     cout << "palavra: " << palavra << " (tamanho: " << tamanhoPalavra << ")\n";
-    cout << "voce tem " << tentativas << " tentativas\n";
+    cout << "\ntentativas restantes: " << tentativas;
+
+    int cont;
+    cout << "\nletras arriscadas:";
+    for(cont = 0; cont < letrasArricadas.size(); cont++){
+        cout << letrasArricadas[cont] << ", ";
+    }
+
 }
 
 void jogarSozinho(){
@@ -44,6 +51,8 @@ void jogarSozinho(){
     string palavra = retornaPalavra();
     int tamanhoPalavra = palavra.size();
     string palavraMascara= retornaMascara(palavra, tamanhoPalavra);
+
+    string letrasArriscadas;
     int tentativas = 0, maxTentativas = (tamanhoPalavra*2);
     int cont;
     char letra;
@@ -51,11 +60,12 @@ void jogarSozinho(){
     while((palavraMascara != palavra) && (maxTentativas - tentativas > 0)){
 
         limpaTela();
-        exibeStatus(palavraMascara, tamanhoPalavra, (maxTentativas - tentativas));
+        exibeStatus(palavraMascara, tamanhoPalavra, (maxTentativas - tentativas), letrasArriscadas);
 
-        cout << "digite uma letra: ";
+        cout << "\ndigite uma letra: ";
         cin >> letra;
         char letraMin = tolower(letra);
+        letrasArriscadas += letraMin;
 
         for(cont = 0; cont < tamanhoPalavra; cont++){
 
@@ -68,6 +78,15 @@ void jogarSozinho(){
         tentativas++;
     }
 
+    if(palavra == palavraMascara){
+
+        limpaTela();
+        cout << "Parabens! Voce venceu!!\n\n";
+    }else{
+
+        limpaTela();
+        cout << "Voce Perdeu!!\n\n";
+    }
 
 
 }
