@@ -47,9 +47,21 @@ void exibeStatus(string palavraMascara, int tamanhoPalavra, int tentativasRestan
 
 }
 
-int jogarSozinho(){
+int jogar(int numeroDeJogadores){
 
-    string palavra = retornaPalavra();
+    string palavra;
+
+    if(numeroDeJogadores == 1){
+
+        palavra = retornaPalavra();
+
+    }else{
+
+        cout << "\nDigite uma palavra ";
+        cin >> palavra;
+
+    }
+
 
     int tamanhoPalavra = palavra.size();
 
@@ -75,7 +87,7 @@ int jogarSozinho(){
 
 
         for(cont = 0; cont < tentativas; cont++){
-            if(letrasArriscadas[cont] == letra){
+            if(letrasArriscadas[cont] == tolower(letra)){
 
                 mensagem =  "ATENCAO: essa letra ja foi digitada!!";
 
@@ -85,12 +97,12 @@ int jogarSozinho(){
 
         if(verificaLetra == false){
 
-            letrasArriscadas += letra;
+            letrasArriscadas += tolower(letra);
 
 
             for(cont = 0; cont < tamanhoPalavra; cont++){
 
-                if(palavra[cont] == letra){
+                if(palavra[cont] == tolower(letra)){
 
                     palavraMascara[cont] = palavra[cont];
 
@@ -140,44 +152,48 @@ void menuInicial(){
 
     int opcao;
 
-    while(opcao != 3){
+    while(opcao < 1 || opcao > 3){
 
         limpaTela();
         cout << "Bem-vindo ao jogo\n";
-        cout << "1- Jogar\n";
-        cout << "2- Sobre\n";
-        cout << "3- Sair\n";
+        cout << "1- Jogar Sozinho\n";
+        cout << "2- Jogar em dupla\n";
+        cout << "3- Sobre\n";
+        cout << "4- Sair\n";
         cout << "Digite o que voce deseja fazer e pressione ENTER: ";
         cin >> opcao;
 
         switch(opcao){
             case 1:
-                if(jogarSozinho() == 1){
+                if(jogar(1) == 1){
                     menuInicial();
                 }
 
                 break;
 
             case 2:
-
-                limpaTela();
-                cout << "Sobre:\nJogo feito por Julio Cesar, em abril de 2021\n\n";
-                cout << "\n1 - Voltar";
-                cout << "\n2 - Sair\n";
-                cin >> opcao;
-                if(opcao == 1){
+                if(jogar(2) == 1){
                     menuInicial();
                 }
                 break;
 
             case 3:
 
-                cout << "Saindo do jogo da forca...\n";
+                limpaTela();
+                cout << "Sobre:\nJogo feito por Julio Cesar, em abril de 2021\n\n";
+                cout << "\n1 - Voltar";
+                cout << "\n2 - Sair\n";
+                cout << "Digite um numero e pressione ENTER: ";
+                cin >> opcao;
+                if(opcao == 1){
+                    menuInicial();
+                }
+
                 break;
 
-            default:
-
-                cout << "Por favor, digite um numero valido\n\n";
+            case 4:
+                limpaTela();
+                cout << "Saindo do jogo da forca...\n";
                 break;
 
         }
