@@ -142,13 +142,13 @@ void menuInicial(){
 
     while(opcao != 3){
 
+        limpaTela();
         cout << "Bem-vindo ao jogo\n";
         cout << "1- Jogar\n";
         cout << "2- Sobre\n";
         cout << "3- Sair\n";
         cout << "Digite o que voce deseja fazer e pressione ENTER: ";
         cin >> opcao;
-        limpaTela();
 
         switch(opcao){
             case 1:
@@ -160,7 +160,14 @@ void menuInicial(){
 
             case 2:
 
+                limpaTela();
                 cout << "Sobre:\nJogo feito por Julio Cesar, em abril de 2021\n\n";
+                cout << "\n1 - Voltar";
+                cout << "\n2 - Sair\n";
+                cin >> opcao;
+                if(opcao == 1){
+                    menuInicial();
+                }
                 break;
 
             case 3:
