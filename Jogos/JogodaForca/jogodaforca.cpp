@@ -47,7 +47,7 @@ void exibeStatus(string palavraMascara, int tamanhoPalavra, int tentativasRestan
 
 }
 
-void jogarSozinho(){
+int jogarSozinho(){
 
     string palavra = retornaPalavra();
 
@@ -60,7 +60,7 @@ void jogarSozinho(){
 
     string mensagem = "Bem-vindo ao jogo!\n";
 
-    int cont;
+    int cont, opcaoJogo;
     char letra;
     bool verificaLetra = false, acertouLetra = false;
 
@@ -120,12 +120,19 @@ void jogarSozinho(){
 
         limpaTela();
         cout << "Parabens! Voce venceu!!\n\n";
+        cout << "Digite UM (1) e aperte ENTER se deseja continuar: ";
+        cin >> opcaoJogo;
+        return opcaoJogo;
+
     }else{
 
         limpaTela();
         cout << "Voce Perdeu!!\n\n";
-    }
+        cout << "Digite UM (1) e aperte ENTER se deseja continuar: ";
+        cin >> opcaoJogo;
+        return opcaoJogo;
 
+    }
 
 }
 
@@ -135,7 +142,7 @@ void menuInicial(){
 
     while(opcao != 3){
 
-        cout << "Jogo da Forca\n";
+        cout << "Bem-vindo ao jogo\n";
         cout << "1- Jogar\n";
         cout << "2- Sobre\n";
         cout << "3- Sair\n";
@@ -145,8 +152,9 @@ void menuInicial(){
 
         switch(opcao){
             case 1:
-
-                jogarSozinho();
+                if(jogarSozinho() == 1){
+                    menuInicial();
+                }
 
                 break;
 
