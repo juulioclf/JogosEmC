@@ -33,11 +33,11 @@ string retornaMascara(string palavra, int tamanhoPalavra){
 
 }
 
-void exibeStatus(string palavra, int tamanhoPalavra, int tentativas, string letrasArricadas, string mensagem){
+void exibeStatus(string palavraMascara, int tamanhoPalavra, int tentativasRestantes, string letrasArricadas, string mensagem){
 
     cout << mensagem;
-    cout << "\npalavra: " << palavra << " (tamanho: " << tamanhoPalavra << ")\n";
-    cout << "\ntentativas restantes: " << tentativas;
+    cout << "\npalavra: " << palavraMascara << " (tamanho: " << tamanhoPalavra << ")\n";
+    cout << "\ntentativas restantes: " << tentativasRestantes;
 
     int cont;
     cout << "\nletras arriscadas:";
@@ -50,15 +50,20 @@ void exibeStatus(string palavra, int tamanhoPalavra, int tentativas, string letr
 void jogarSozinho(){
 
     string palavra = retornaPalavra();
+
     int tamanhoPalavra = palavra.size();
+
     string palavraMascara= retornaMascara(palavra, tamanhoPalavra);
 
-    string letrasArriscadas;
-    string mensagem;
     int tentativas = 0, maxTentativas = (tamanhoPalavra*2);
+    string letrasArriscadas;
+
+    string mensagem = "Bem-vindo ao jogo!\n";
+
     int cont;
     char letra;
-    bool verificaLetra;
+    bool verificaLetra = false, acertouLetra = false;
+
 
     while((palavraMascara != palavra) && (maxTentativas - tentativas > 0)){
 
@@ -67,6 +72,7 @@ void jogarSozinho(){
 
         cout << "\ndigite uma letra: ";
         cin >> letra;
+
 
         for(cont = 0; cont < tentativas; cont++){
             if(letrasArriscadas[cont] == letra){
@@ -78,19 +84,35 @@ void jogarSozinho(){
         }
 
         if(verificaLetra == false){
+
             letrasArriscadas += letra;
 
 
-        for(cont = 0; cont < tamanhoPalavra; cont++){
+            for(cont = 0; cont < tamanhoPalavra; cont++){
 
-            if(palavra[cont] == letra){
+                if(palavra[cont] == letra){
 
-                palavraMascara[cont] = palavra[cont];
+                    palavraMascara[cont] = palavra[cont];
+
+                    acertouLetra = true;
+                }
             }
-        }
+
+
+            if(acertouLetra == false){
+
+                mensagem = "voce errou uma letra";
+            }else{
+
+                mensagem = "Voce acertou uma letra! \n";
+
+            }
 
         tentativas++;
+
         }
+        acertouLetra = false;
+        verificaLetra = false;
 
     }
 
