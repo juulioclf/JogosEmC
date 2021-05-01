@@ -33,9 +33,10 @@ string retornaMascara(string palavra, int tamanhoPalavra){
 
 }
 
-void exibeStatus(string palavra, int tamanhoPalavra, int tentativas, string letrasArricadas){
+void exibeStatus(string palavra, int tamanhoPalavra, int tentativas, string letrasArricadas, string mensagem){
 
-    cout << "palavra: " << palavra << " (tamanho: " << tamanhoPalavra << ")\n";
+    cout << mensagem;
+    cout << "\npalavra: " << palavra << " (tamanho: " << tamanhoPalavra << ")\n";
     cout << "\ntentativas restantes: " << tentativas;
 
     int cont;
@@ -53,29 +54,44 @@ void jogarSozinho(){
     string palavraMascara= retornaMascara(palavra, tamanhoPalavra);
 
     string letrasArriscadas;
+    string mensagem;
     int tentativas = 0, maxTentativas = (tamanhoPalavra*2);
     int cont;
     char letra;
+    bool verificaLetra;
 
     while((palavraMascara != palavra) && (maxTentativas - tentativas > 0)){
 
         limpaTela();
-        exibeStatus(palavraMascara, tamanhoPalavra, (maxTentativas - tentativas), letrasArriscadas);
+        exibeStatus(palavraMascara, tamanhoPalavra, (maxTentativas - tentativas), letrasArriscadas, mensagem);
 
         cout << "\ndigite uma letra: ";
         cin >> letra;
-        char letraMin = tolower(letra);
-        letrasArriscadas += letraMin;
+
+        for(cont = 0; cont < tentativas; cont++){
+            if(letrasArriscadas[cont] == letra){
+
+                mensagem =  "ATENCAO: essa letra ja foi digitada!!";
+
+                verificaLetra = true;
+            }
+        }
+
+        if(verificaLetra == false){
+            letrasArriscadas += letra;
+
 
         for(cont = 0; cont < tamanhoPalavra; cont++){
 
-            if(palavra[cont] == letraMin){
+            if(palavra[cont] == letra){
 
                 palavraMascara[cont] = palavra[cont];
             }
         }
 
         tentativas++;
+        }
+
     }
 
     if(palavra == palavraMascara){
