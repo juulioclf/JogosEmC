@@ -11,9 +11,9 @@ void limpaTela(){
 
 string retornaPalavra(){
 
-    string palavrasVetor[5] = {"carro", "abacaxi", "macaco", "brasil", "teclado"};
+    string palavrasVetor[10] = {"carro", "abacaxi", "macaco", "brasil", "teclado", "celular", "morango", "mouse", "pincel", "crianca"};
 
-    return palavrasVetor[rand() % 5];
+    return palavrasVetor[rand() % 9];
 }
 
 
@@ -57,7 +57,7 @@ int jogar(int numeroDeJogadores){
 
     }else{
 
-        cout << "\nDigite uma palavra ";
+        cout << "\nDigite uma palavra: ";
         cin >> palavra;
 
     }
